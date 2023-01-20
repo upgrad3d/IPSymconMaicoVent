@@ -8,10 +8,19 @@ class MaicoEnocean extends IPSModule {
     * ABC_MeineErsteEigeneFunktion($id);
     *
     */
-    public function MeineErsteEigeneFunktion() {
-        echo $this->InstanceID;
-    }
 
+    #================================================================================================
+    public function RequestAction($Ident, $Value)
+    #================================================================================================
+    {
+        switch($Ident) {
+            case "FreeDeviceID":
+                $this->UpdateFormField('DeviceID', 'value', $this->FreeDeviceID());
+                break;
+            default:
+                throw new Exception("Invalid Ident");
+        }
+    }
 
     #================================================================================================
 	protected function FreeDeviceID()  //Ermitteln der nächsten freien Adresse des Gateways
