@@ -1,0 +1,16 @@
+{
+    "id": "{593B496D-5B7B-DA35-A64E-5591F453D54B}",
+    "name": "MaicoEnocean",
+    "type": 3,
+    "vendor": "Maico",
+    "aliases":
+    [
+        "PP45RC",
+        "PPB30RC"
+    ],
+    "url": "",
+    "parentRequirements": ["{70E3075F-A35D-4DEB-AC20-C929A156FE48}"],
+    "childRequirements": [],
+    "implemented": ["{DE2DA2C0-7A28-4D23-A9AA-6D1C7609C7EC}"],
+    "prefix": "MEO"
+}
