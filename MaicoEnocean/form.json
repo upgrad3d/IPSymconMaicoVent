@@ -1,0 +1,30 @@
+{
+    "elements":
+    [
+        {
+            "type": "RowLayout",
+            "items": 
+            [
+                {
+                    "type": "NumberSpinner",
+                    "name": "DeviceID",
+                    "caption": "DeviceID"
+                },
+                {
+                    "type": "Button",
+                    "caption": "Search unused Device ID",
+                    "onClick": "IPS_RequestAction($id, \"FreeDeviceID\", \"\");"
+                }
+
+            ]
+        }    
+    ],
+    "actions":
+    [
+         
+    ],
+    "status":
+    [
+         
+    ]
+}
