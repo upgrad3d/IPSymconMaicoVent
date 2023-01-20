@@ -1,0 +1,16 @@
+{
+    "id": "{593B496D-5B7B-DA35-A64E-5591F453D54B}",
+    "name": "PP45RC",
+    "type": 3,
+    "vendor": "Maico",
+    "aliases":
+    [
+        "PP45RC",
+        "PPB30RC"
+    ],
+    "url": "",
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "MEO"
+}
