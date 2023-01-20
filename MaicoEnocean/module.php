@@ -15,7 +15,7 @@ class MaicoEnocean extends IPSModule {
     {
         switch($Ident) {
             case "FreeDeviceID":
-                $this->UpdateFormField('DeviceID', 'value', $this->FreeDeviceID());
+                $this->UpdateFormField('DeviceID', 'Value', $this->FreeDeviceID());
                 break;
             default:
                 throw new Exception("Invalid Ident");
