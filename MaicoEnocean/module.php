@@ -15,9 +15,12 @@ class MaicoEnocean extends IPSModule {
         //Never delete this line!
         parent::Create();
 
-        //hier sollten Statusvariablen und Modul-Eigenschaften erstellt werden, die das Modul dauerhaft braucht.
-        $this->RegisterVariableInteger("fanSpeed", $this->Translate("Fan Speed"), "","");
-        $this->RegisterVariableInteger("FanSpeed", true);
+        //register variables for operation 
+        $this->RegisterVariableInteger("fanSpeed", $this->Translate("Fan Speed"));
+        $this->RegisterVariableInteger("operatingmode", $this->Translate("Operating Mode"));
+
+        //generate profiles - todo
+        
 
         //Connect enocean splitter (enocean gateway)
         $this->ConnectParent("{A52FEFE9-7858-4B8E-A96E-26E15CB944F7}");
