@@ -32,7 +32,7 @@ class MaicoEnocean extends IPSModule {
 
         $this->RegisterPropertyString("BaseData", '
         {
-            "DataID":"{70E3075F-A35D-4DEB-AC20-C929A156FE48}",
+            "DataID":"{DE2DA2C0-7A28-4D23A9AA6D1C7609C7EC}",
             "Device":0xF6,
             "Status":0,
             "DeviceID":21,
@@ -138,6 +138,6 @@ class MaicoEnocean extends IPSModule {
         $data = json_decode($this->ReadPropertyString("BaseData"));
         $data->DeviceID = $this->ReadPropertyInteger("DeviceID");
         $this->SendDataToParent(json_encode($data));
-        $this->SendDebug("Transmit", $data, 0);
+        //$this->SendDebug("Transmit", $data, 0);
     }
 }
