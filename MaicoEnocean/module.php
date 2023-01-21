@@ -33,24 +33,24 @@ class MaicoEnocean extends IPSModule {
         $this->RegisterPropertyString("BaseData", '
         {
             "DataID":"{70E3075F-A35D-4DEB-AC20-C929A156FE48}",
-            "Device":210,
+            "Device":0xF6,
             "Status":0,
-            "DeviceID":0,
-            "DestinationID":-1,
-            "DataLength":4,
-            "DataByte12":243,
-            "DataByte11":244,
-            "DataByte10":245,
-            "DataByte9":246,
-            "DataByte8":247,
-            "DataByte7":248,
-            "DataByte6":249,
-            "DataByte5":250,
-            "DataByte4":251,
-            "DataByte3":252,
-            "DataByte2":253,
-            "DataByte1":254,
-            "DataByte0":255
+            "DeviceID":21,
+            "DestinationID":0,
+            "DataLength":1,
+            "DataByte12":0,
+            "DataByte11":0,
+            "DataByte10":0,
+            "DataByte9":0,
+            "DataByte8":0,
+            "DataByte7":0,
+            "DataByte6":0,
+            "DataByte5":0,
+            "DataByte4":0,
+            "DataByte3":0,
+            "DataByte2":0,
+            "DataByte1":0,
+            "DataByte0":48
         }');
     }
 
