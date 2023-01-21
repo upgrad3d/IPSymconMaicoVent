@@ -24,6 +24,10 @@ class MaicoEnocean extends IPSModule {
 
         //Connect enocean splitter (enocean gateway)
         $this->ConnectParent("{A52FEFE9-7858-4B8E-A96E-26E15CB944F7}");
+
+        //
+        $this->RegisterPropertyInteger("DeviceID", -1);
+		$this->RegisterPropertyString("ReturnID", "");
     }
 
     #================================================================================================
@@ -51,6 +55,7 @@ class MaicoEnocean extends IPSModule {
             case "FreeDeviceID":
                 $this->UpdateFormField('DeviceID', 'value', $this->FreeDeviceID());
                 break;
+
             default:
                 throw new Exception("Invalid Ident");
         }
@@ -75,4 +80,35 @@ class MaicoEnocean extends IPSModule {
         for($ID = 1; $ID<=256; $ID++)if(!in_array($ID,$DeviceArray))break;
         return $ID == 256?0:$ID;
     }
+
+    #================================================================================================
+    public function ReceiveData($JSONString)
+    #================================================================================================
+    {
+        $this->SendDebug("Receive", $JSONString, 0);
+    }
+
+    #================================================================================================
+    protected function SendDebug($Message, $Data, $Format)
+    #================================================================================================
+    {
+        if (is_array($Data))
+        {
+            foreach ($Data as $Key => $DebugData)
+            {
+                    $this->SendDebug($Message . ":" . $Key, $DebugData, 0);
+            }
+        }
+        else if (is_object($Data))
+        {
+            foreach ($Data as $Key => $DebugData)
+            {
+                    $this->SendDebug($Message . "." . $Key, $DebugData, 0);
+            }
+        }
+        else
+        {
+            parent::SendDebug($Message, $Data, $Format);
+        }
+    }    
 }
