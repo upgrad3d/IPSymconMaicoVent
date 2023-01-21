@@ -32,7 +32,7 @@ class MaicoEnocean extends IPSModule {
 
         $this->RegisterPropertyString("BaseData", '
         {
-            "DataID":"{DE2DA2C0-7A28-4D23A9AA6D1C7609C7EC}",
+            "DataID":"{70E3075F-A35D-4DEB-AC20-C929A156FE48}",
             "Device":246,
             "Status":0,
             "DeviceID":21,
