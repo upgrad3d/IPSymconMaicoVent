@@ -143,7 +143,7 @@ class MaicoEnocean extends IPSModule {
     {
         $data = json_decode($this->ReadPropertyString("BaseData"));
         $data->DeviceID = $this->ReadPropertyInteger("DeviceID");
-        $data->DataByte1 = 100;
         $this->SendDataToParent(json_encode($data));
+        $this->SendDebug("Transmit", $data, 0);
     }
 }
