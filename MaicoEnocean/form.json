@@ -14,6 +14,11 @@
                     "type": "Button",
                     "caption": "Search unused Device ID",
                     "onClick": "IPS_RequestAction($id, \"FreeDeviceID\", \"\");"
+                },
+                {
+                    "type": "Button",
+                    "caption": "Test",
+                    "onClick": "IPS_RequestAction($id, \"Test\", \"\");"
                 }
 
 

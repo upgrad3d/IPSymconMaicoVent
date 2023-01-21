@@ -28,6 +28,30 @@ class MaicoEnocean extends IPSModule {
         //
         $this->RegisterPropertyInteger("DeviceID", -1);
 		$this->RegisterPropertyString("ReturnID", "");
+
+
+        $this->RegisterPropertyString("BaseData", '
+        {
+            "DataID":"{70E3075F-A35D-4DEB-AC20-C929A156FE48}",
+            "Device":210,
+            "Status":0,
+            "DeviceID":0,
+            "DestinationID":-1,
+            "DataLength":4,
+            "DataByte12":0,
+            "DataByte11":0,
+            "DataByte10":0,
+            "DataByte9":0,
+            "DataByte8":0,
+            "DataByte7":0,
+            "DataByte6":0,
+            "DataByte5":0,
+            "DataByte4":0,
+            "DataByte3":0,
+            "DataByte2":0,
+            "DataByte1":0,
+            "DataByte0":0
+        }');
     }
 
     #================================================================================================
@@ -55,7 +79,8 @@ class MaicoEnocean extends IPSModule {
             case "FreeDeviceID":
                 $this->UpdateFormField('DeviceID', 'value', $this->FreeDeviceID());
                 break;
-
+            case "Test":
+                
             default:
                 throw new Exception("Invalid Ident");
         }
@@ -110,5 +135,14 @@ class MaicoEnocean extends IPSModule {
         {
             parent::SendDebug($Message, $Data, $Format);
         }
-    }    
+    } 
+    
+    public function test()
+    #================================================================================================
+    {
+        $data = json_decode($this->ReadPropertyString("BaseData"));
+        $data->DeviceID = $this->ReadPropertyInteger("DeviceID");
+        $data->DataByte0 = 100;
+        $this->SendDataToParent(json_encode($data));
+    }
 }
