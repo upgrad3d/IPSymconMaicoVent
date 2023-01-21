@@ -16,6 +16,9 @@
                     "onClick": "IPS_RequestAction($id, \"FreeDeviceID\", \"\");"
                 }
 
+
+
+
             ]
         }    
     ],
