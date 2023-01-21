@@ -37,7 +37,7 @@ class MaicoEnocean extends IPSModule {
             "Status":0,
             "DeviceID":21,
             "DestinationID":0,
-            "DataLength":1,
+            "DataLength":4,
             "DataByte12":0,
             "DataByte11":0,
             "DataByte10":0,
@@ -107,12 +107,6 @@ class MaicoEnocean extends IPSModule {
         return $ID == 256?0:$ID;
     }
 
-    #================================================================================================
-    public function ReceiveData($JSONString)
-    #================================================================================================
-    {
-        $this->SendDebug("Receive", $JSONString, 0);
-    }
 
     #================================================================================================
     protected function SendDebug($Message, $Data, $Format)
