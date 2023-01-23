@@ -23,11 +23,12 @@ class MaicoEnocean extends IPSModule {
 
         //
         $this->RegisterPropertyInteger("deviceId", -1);
-        $this->RegisterPropertyString("returnId", "FF FF FF FF");
+        $this->RegisterPropertyString("returnId", "FFFFFFFF");
         
         
         $this->RegisterVariableInteger("fanSpeed", $this->Translate("Fan Speed"));
         $this->RegisterVariableInteger("operatingmode", $this->Translate("Operating Mode"));
+        $this->RegisterVariableString("binDeviceId", $this->Translate("Device ID Binary"));
 
 
         $this->RegisterPropertyString("BaseData", '
@@ -69,6 +70,10 @@ class MaicoEnocean extends IPSModule {
     {
         //Never delete this line!
         parent::ApplyChanges();
+
+        SetValue(binDeviceId, hex2bin(returnId));
+
+
     }
 
     	#================================================================================================
