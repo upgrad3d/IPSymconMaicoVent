@@ -15,10 +15,6 @@ class MaicoEnocean extends IPSModule {
         //Never delete this line!
         parent::Create();
 
-        //register variables for operation 
-        $this->RegisterVariableInteger("fanSpeed", $this->Translate("Fan Speed"));
-        $this->RegisterVariableInteger("operatingmode", $this->Translate("Operating Mode"));
-
         //generate profiles - todo
         
 
@@ -27,7 +23,7 @@ class MaicoEnocean extends IPSModule {
 
         //
         $this->RegisterPropertyInteger("DeviceID", -1);
-		$this->RegisterPropertyString("ReturnID", "");
+        
 
 
         $this->RegisterPropertyString("BaseData", '
@@ -69,75 +65,41 @@ class MaicoEnocean extends IPSModule {
     {
         //Never delete this line!
         parent::ApplyChanges();
+
+        $this->RegisterVariableInteger("fanSpeed", $this->Translate("Fan Speed"));
+        $this->RegisterVariableInteger("operatingmode", $this->Translate("Operating Mode"));
+        $this->RegisterVariableString("returnId", $this->Translate("Return ID"));
     }
 
-    #================================================================================================
-    public function RequestAction($Ident, $Value)
-    #================================================================================================
-    {
-        switch($Ident) {
-            case "FreeDeviceID":
-                $this->UpdateFormField('DeviceID', 'value', $this->FreeDeviceID());
-                break;
-            case "Test":
-                $this->test();
-                break;
-            default:
-                throw new Exception("Invalid Ident");
-        }
-    }
+    	#================================================================================================
+		protected function SendDebug($Message, $Data, $Format)
+		#================================================================================================
+		{
+			if (is_array($Data))
+			{
+			    foreach ($Data as $Key => $DebugData)
+			    {
+						$this->SendDebug($Message . ":" . $Key, $DebugData, 0);
+			    }
+			}
+			else if (is_object($Data))
+			{
+			    foreach ($Data as $Key => $DebugData)
+			    {
+						$this->SendDebug($Message . "." . $Key, $DebugData, 0);
+			    }
+			}
+			else
+			{
+			    parent::SendDebug($Message, $Data, $Format);
+			}
+		}
 
-    #================================================================================================
-    protected function FreeDeviceID()
-    #================================================================================================
-    {
-        $Gateway = @IPS_GetInstance($this->InstanceID)["ConnectionID"];
-        if($Gateway == 0) return;
-        $Devices = IPS_GetInstanceListByModuleType(3);             # alle Geräte
-        $DeviceArray = array();
-        foreach ($Devices as $Device){
-            if(IPS_GetInstance($Device)["ConnectionID"] == $Gateway){
-                $config = json_decode(IPS_GetConfiguration($Device));
-                if(!property_exists($config, 'DeviceID'))continue;
-                if(is_integer($config->DeviceID)) $DeviceArray[] = $config->DeviceID;
-            }
+        #================================================================================================
+		public function ReceiveData($JSONString)
+		#================================================================================================
+		{
+			$this->SendDebug("Receive", $JSONString, 0);
         }
-    
-        for($ID = 1; $ID<=256; $ID++)if(!in_array($ID,$DeviceArray))break;
-        return $ID == 256?0:$ID;
-    }
 
-
-    #================================================================================================
-    protected function SendDebug($Message, $Data, $Format)
-    #================================================================================================
-    {
-        if (is_array($Data))
-        {
-            foreach ($Data as $Key => $DebugData)
-            {
-                    $this->SendDebug($Message . ":" . $Key, $DebugData, 0);
-            }
-        }
-        else if (is_object($Data))
-        {
-            foreach ($Data as $Key => $DebugData)
-            {
-                    $this->SendDebug($Message . "." . $Key, $DebugData, 0);
-            }
-        }
-        else
-        {
-            parent::SendDebug($Message, $Data, $Format);
-        }
-    } 
-    
-    public function test()
-    #================================================================================================
-    {
-        $data = json_decode($this->ReadPropertyString("BaseData"));
-        $data->DeviceID = $this->ReadPropertyInteger("DeviceID");
-        $this->SendDataToParent(json_encode($data));
-        //$this->SendDebug("Transmit", $data, 0);
-    }
 }
