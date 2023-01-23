@@ -71,7 +71,7 @@ class MaicoEnocean extends IPSModule {
         //Never delete this line!
         parent::ApplyChanges();
 
-        SetValue(binDeviceId, hex2bin(returnId));
+        $this->SetValue("binDeviceId", hex2bin($this->GetValueString("returnId")));
 
 
     }
