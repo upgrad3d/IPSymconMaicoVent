@@ -3,27 +3,27 @@
     [
         {
             "type": "RowLayout",
-            "items": 
-            [
+            "items":[
                 {
                     "type": "NumberSpinner",
-                    "name": "DeviceID",
+                    "name": "Device ID",
                     "caption": "DeviceID"
                 },
                 {
                     "type": "Button",
                     "caption": "Search unused Device ID",
                     "onClick": "IPS_RequestAction($id, \"FreeDeviceID\", \"\");"
-                },
-                {
-                    "type": "Button",
-                    "caption": "Test",
-                    "onClick": "IPS_RequestAction($id, \"Test\", \"\");"
                 }
-
-
-
-
+            ]
+        },
+        {
+            "type": "RowLayout",
+            "items":[
+                {
+                    "type": "ValidationTextBox",
+                    "name": "returnId",
+                    "caption": "Fan ID"
+                }
             ]
         }    
     ],
