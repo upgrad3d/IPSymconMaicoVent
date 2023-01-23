@@ -108,7 +108,7 @@ class MaicoEnocean extends IPSModule {
         $data = base_convert(json_decode($JSONString), 10, 16);
         
 
-        if ($data->DeviceID = base_convert($this->ReadPropertyString("returnId"), 16, 10))
+        if ($data->DeviceID = $this->ReadPropertyString("returnId"))
         {
             foreach ($data as $Key => $DebugData)
             
