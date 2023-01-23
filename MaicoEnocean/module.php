@@ -23,7 +23,7 @@ class MaicoEnocean extends IPSModule {
 
         //
         $this->RegisterPropertyInteger("deviceId", -1);
-        $this->RegisterPropertyInteger("returnId", -1);
+        $this->RegisterPropertyString("returnId", "FF FF FF FF");
         
         
         $this->RegisterVariableInteger("fanSpeed", $this->Translate("Fan Speed"));
