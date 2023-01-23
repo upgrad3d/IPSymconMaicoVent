@@ -76,35 +76,39 @@ class MaicoEnocean extends IPSModule {
 
     }
 
-    	#================================================================================================
-		protected function SendDebug($Message, $Data, $Format)
-		#================================================================================================
-		{
-			if (is_array($Data))
-			{
-			    foreach ($Data as $Key => $DebugData)
-			    {
-						$this->SendDebug($Message . ":" . $Key, $DebugData, 0);
-			    }
-			}
-			else if (is_object($Data))
-			{
-			    foreach ($Data as $Key => $DebugData)
-			    {
-						$this->SendDebug($Message . "." . $Key, $DebugData, 0);
-			    }
-			}
-			else
-			{
-			    parent::SendDebug($Message, $Data, $Format);
-			}
-		}
-
-        #================================================================================================
-		public function ReceiveData($JSONString)
-		#================================================================================================
-		{
-			$this->SendDebug("Receive", $JSONString, 0);
+    #================================================================================================
+    protected function SendDebug($Message, $Data, $Format)
+    #================================================================================================
+    {
+        if (is_array($Data))
+        {
+            foreach ($Data as $Key => $DebugData)
+            {
+                    $this->SendDebug($Message . ":" . $Key, $DebugData, 0);
+            }
         }
+        else if (is_object($Data))
+        {
+            foreach ($Data as $Key => $DebugData)
+            {
+                    $this->SendDebug($Message . "." . $Key, $DebugData, 0);
+            }
+        }
+        else
+        {
+            parent::SendDebug($Message, $Data, $Format);
+        }
+    }
+
+    #================================================================================================
+    public function ReceiveData($JSONString)
+    #================================================================================================
+    {
+        $this->SendDebug("Receive", $JSONString, 0);
+        $data = json_decode($JSONString);
+        $this->SendDebug("Encoded Json", $data, 0);
+
+
+    }
 
 }
