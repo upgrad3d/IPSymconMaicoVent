@@ -110,6 +110,7 @@ class MaicoEnocean extends IPSModule {
         if ($data->DeviceID = base_convert($this->ReadPropertyString("returnId"), 16, 10))
         {
             $this->SendDebug("Receive", $data, 0);
+            $this->SendDebug("Receive", $JSONString, 0);
         }
         
         
