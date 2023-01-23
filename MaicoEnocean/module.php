@@ -22,8 +22,12 @@ class MaicoEnocean extends IPSModule {
         $this->ConnectParent("{A52FEFE9-7858-4B8E-A96E-26E15CB944F7}");
 
         //
-        $this->RegisterPropertyInteger("DeviceID", -1);
+        $this->RegisterPropertyInteger("deviceId", -1);
+        $this->RegisterPropertyInteger("returnId", -1);
         
+        
+        $this->RegisterVariableInteger("fanSpeed", $this->Translate("Fan Speed"));
+        $this->RegisterVariableInteger("operatingmode", $this->Translate("Operating Mode"));
 
 
         $this->RegisterPropertyString("BaseData", '
@@ -65,10 +69,6 @@ class MaicoEnocean extends IPSModule {
     {
         //Never delete this line!
         parent::ApplyChanges();
-
-        $this->RegisterVariableInteger("fanSpeed", $this->Translate("Fan Speed"));
-        $this->RegisterVariableInteger("operatingmode", $this->Translate("Operating Mode"));
-        $this->RegisterVariableString("returnId", $this->Translate("Return ID"));
     }
 
     	#================================================================================================
